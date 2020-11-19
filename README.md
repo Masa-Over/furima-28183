@@ -28,20 +28,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| nickname              | string  | null: false |
-| email                 | string  | null: false |
-| password              | string  | null: false |
-| password_confirmation | string  | null: false |
-| family_name           | string  | null: false |
-| first_name            | string  | null: false |
-| family_name_katakana  | string  | null: false |
-| first_name_katakana   | string  | null: false |
-| year                  | integer | null: false |
-| month                 | integer | null: false |
-| day                   | integer | null: false |
-
+| Column               | Type    | Options     |
+| -------------------- | ------- | ----------- |
+| nickname             | string  | null: false |
+| email                | string  | null: false |
+| encrypted_password   | string  | null: false |
+| family_name          | string  | null: false |
+| first_name           | string  | null: false |
+| family_name_katakana | string  | null: false |
+| first_name_katakana  | string  | null: false |
+| extract              | integer | null: false |
 ### Association
 
 -has_many : items
@@ -49,17 +45,17 @@ Things you may want to cover:
 
 ##  items テーブル
 
-| Column       | Type        | Options                      |
-| ------------ | ----------- | ---------------------------- |
-| name         | string      | null: false                  |
-| explanation  | string      | null: false                  |
-| price        | integer     | null: false                  |
-| users        | references  | null: false,foreign_key:true |
-| category     | integer     | null: false                  |
-| status       | integer     | null: false                  |
-| delivery_fee | integer     | null: false                  |
-| send_area    | integer     | null: false                  |
-| send_day     | integer     | null: false                  |
+| Column          | Type        | Options                      |
+| --------------- | ----------- | ---------------------------- |
+| name            | string      | null: false                  |
+| explanation     | text        | null: false                  |
+| price           | integer     | null: false                  |
+| users           | references  | null: false,foreign_key:true |
+| category_id     | integer     | null: false                  |
+| status_id       | integer     | null: false                  |
+| delivery_fee_id | integer     | null: false                  |
+| send_area_id    | integer     | null: false                  |
+| send_day_id     | integer     | null: false                  |
 
 ### Association
 
@@ -81,14 +77,14 @@ Things you may want to cover:
 
 ##  street_address テーブル
 
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| prefecture     | integer | null: false |
-| municipalities | string  | null: false |
-| address        | string  | null: false |
-| postal_code    | string  | null: false |
-| phone_number   | string  | null: false |
-| building       | string  | null: false |
+| Column            | Type    | Options                      |
+| ----------------- | ------- | ---------------------------- |
+| prefecture_id     | integer | null: false                  |
+| municipalities    | string  | null: false                  |
+| address           | string  | null: false,foreign_key:true |
+| postal_code       | string  | null: false,foreign_key:true |
+| phone_number      | string  | null: false,foreign_key:true |
+| building          | string  | null: false,foreign_key:true |
 
 ### Association
 - belongs_to :purchase_record
