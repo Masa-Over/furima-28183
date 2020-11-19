@@ -54,7 +54,7 @@ Things you may want to cover:
 | category_id     | integer     | null: false                  |
 | status_id       | integer     | null: false                  |
 | delivery_fee_id | integer     | null: false                  |
-| send_area_id    | integer     | null: false                  |
+| prefecture_id   | integer     | null: false                  |
 | send_day_id     | integer     | null: false                  |
 
 ### Association
@@ -86,7 +86,7 @@ Things you may want to cover:
 | postal_code     | string     | null: false,foreign_key:true |
 | phone_number    | string     | null: false,foreign_key:true |
 | building        | string     | null: false,foreign_key:true |
-| purchase_record | references | null: false,foreign_key:true |
+| purchase_record | references | foreign_key:true             |
 
 ### Association
 - belongs_to :purchase_record
