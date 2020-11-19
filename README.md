@@ -82,9 +82,9 @@ Things you may want to cover:
 | --------------- | ---------- | ---------------------------- |
 | prefecture_id   | integer    | null: false                  |
 | municipalities  | string     | null: false                  |
-| address         | string     |                              |
-| postal_code     | string     |                              |
-| phone_number    | string     |                              |
+| address         | string     | null: false                  |
+| postal_code     | string     | null: false                  |
+| phone_number    | string     | null: false                  |
 | building        | string     |                              |
 | purchase_record | references | foreign_key:true             |
 
