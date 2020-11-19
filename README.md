@@ -37,7 +37,7 @@ Things you may want to cover:
 | first_name           | string  | null: false |
 | family_name_katakana | string  | null: false |
 | first_name_katakana  | string  | null: false |
-| extract              | integer | null: false |
+| date                 | integer | null: false |
 ### Association
 
 -has_many : items
@@ -66,8 +66,8 @@ Things you may want to cover:
 
 | Column | Type       | Options                      |
 | ------ | ---------- | ---------------------------- |
-| users  | references | null: false,foreign_key:true |
-| items  | references | null: false,foreign_key:true |
+| user   | references | null: false,foreign_key:true |
+| item   | references | null: false,foreign_key:true |
 
 ### Association
 
@@ -77,14 +77,13 @@ Things you may want to cover:
 
 ##  street_address テーブル
 
-| Column            | Type    | Options                      |
-| ----------------- | ------- | ---------------------------- |
-| prefecture_id     | integer | null: false                  |
-| municipalities    | string  | null: false                  |
-| address           | string  | null: false,foreign_key:true |
-| postal_code       | string  | null: false,foreign_key:true |
-| phone_number      | string  | null: false,foreign_key:true |
-| building          | string  | null: false,foreign_key:true |
+| Column         | Type       | Options                      |
+| -------------- | ---------- | ---------------------------- |
+| prefecture_id  | integer    | null: false                  |
+| municipalities | string     | null: false                  |
+| user           | references | null: false,foreign_key:true |
+| item           | references | null: false,foreign_key:true |
+
 
 ### Association
 - belongs_to :purchase_record
