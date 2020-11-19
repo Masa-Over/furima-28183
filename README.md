@@ -82,10 +82,10 @@ Things you may want to cover:
 | --------------- | ---------- | ---------------------------- |
 | prefecture_id   | integer    | null: false                  |
 | municipalities  | string     | null: false                  |
-| address         | string     | null: false,foreign_key:true |
-| postal_code     | string     | null: false,foreign_key:true |
-| phone_number    | string     | null: false,foreign_key:true |
-| building        | string     | null: false,foreign_key:true |
+| address         | string     |                              |
+| postal_code     | string     |                              |
+| phone_number    | string     |                              |
+| building        | string     |                              |
 | purchase_record | references | foreign_key:true             |
 
 ### Association
