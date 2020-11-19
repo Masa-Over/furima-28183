@@ -41,7 +41,7 @@ Things you may want to cover:
 ### Association
 
 -has_many : items
--has_many : purchase_record
+-has_many : purchase_records
 
 ##  items テーブル
 
@@ -50,7 +50,7 @@ Things you may want to cover:
 | name            | string      | null: false                  |
 | explanation     | text        | null: false                  |
 | price           | integer     | null: false                  |
-| users           | references  | null: false,foreign_key:true |
+| user            | references  | null: false,foreign_key:true |
 | category_id     | integer     | null: false                  |
 | status_id       | integer     | null: false                  |
 | delivery_fee_id | integer     | null: false                  |
@@ -62,7 +62,7 @@ Things you may want to cover:
 - belongs_to :user
 - has_one :purchase_record
 
-##  purchase_recordテーブル
+##  purchase_recordsテーブル
 
 | Column          | Type       | Options                               |
 | --------------- | ---------- | ------------------------------------- |
