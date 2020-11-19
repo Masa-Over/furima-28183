@@ -66,7 +66,9 @@ Things you may want to cover:
 
 | Column          | Type       | Options                               |
 | --------------- | ---------- | ------------------------------------- |
-| purchase_record | references | null: false,foreign_key:true |
+| user            | references | null: false,foreign_key:true          |
+| item            | references | null: false,foreign_key:true          |
+| purchase_record | references | null: false,foreign_key:true          |
 
 
 ### Association
@@ -81,8 +83,6 @@ Things you may want to cover:
 | -------------- | ---------- | ---------------------------- |
 | prefecture_id  | integer    | null: false                  |
 | municipalities | string     | null: false                  |
-| user           | references | null: false,foreign_key:true |
-| item           | references | null: false,foreign_key:true |
 | address        | string     | null: false,foreign_key:true |
 | postal_code    | string     | null: false,foreign_key:true |
 | phone_number   | string     | null: false,foreign_key:true |
