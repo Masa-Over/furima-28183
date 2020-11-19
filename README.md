@@ -68,7 +68,6 @@ Things you may want to cover:
 | --------------- | ---------- | ------------------------------------- |
 | user            | references | null: false,foreign_key:true          |
 | item            | references | null: false,foreign_key:true          |
-| purchase_record | references | null: false,foreign_key:true          |
 
 
 ### Association
@@ -79,14 +78,15 @@ Things you may want to cover:
 
 ##  street_address テーブル
 
-| Column         | Type       | Options                      |
-| -------------- | ---------- | ---------------------------- |
-| prefecture_id  | integer    | null: false                  |
-| municipalities | string     | null: false                  |
-| address        | string     | null: false,foreign_key:true |
-| postal_code    | string     | null: false,foreign_key:true |
-| phone_number   | string     | null: false,foreign_key:true |
-| building       | string     | null: false,foreign_key:true |
+| Column          | Type       | Options                      |
+| --------------- | ---------- | ---------------------------- |
+| prefecture_id   | integer    | null: false                  |
+| municipalities  | string     | null: false                  |
+| address         | string     | null: false,foreign_key:true |
+| postal_code     | string     | null: false,foreign_key:true |
+| phone_number    | string     | null: false,foreign_key:true |
+| building        | string     | null: false,foreign_key:true |
+| purchase_record | references | null: false,foreign_key:true |
 
 ### Association
 - belongs_to :purchase_record
