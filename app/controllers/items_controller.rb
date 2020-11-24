@@ -7,11 +7,10 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
   end
 
   def new
-    @items = Items.new
+    @items = Item.new
   end
 
   def show
