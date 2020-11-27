@@ -116,7 +116,7 @@ RSpec.describe 'ログイン', type: :system do
       expect(page).to have_content('ログイン')
       visit new_user_session_path
       fill_in 'email', with: @user.email
-      fill_in 'encrypted_password',with: @user.password
+      fill_in 'password',with: @user.password
       find('input[name ="commit"]').click
       expect("/").to eq root_path
       expect(page).to have_no_content('新規登録')
@@ -129,7 +129,7 @@ RSpec.describe 'ログイン', type: :system do
       expect(page).to have_content('ログイン')
       visit new_user_session_path
       fill_in 'email', with: ""
-      fill_in 'encrypted_password', with: ""
+      fill_in 'password', with: ""
       find('input[name="commit"]').click
       expect(current_path).to eq new_user_session_path
     end
