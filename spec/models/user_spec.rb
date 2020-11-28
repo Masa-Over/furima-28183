@@ -9,27 +9,6 @@ RSpec.describe User, type: :model do
       it "nickname、email、passwordとpassword_confirmation、familyname、firstname、familyname_katakana、firstname_katakana、birthdayが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "passwordが英字と数字の両方が含まれていたら登録できる" do
-        @user.password = "111aaa"
-        @user.password_confirmation = "111aaa"
-        expect(@user).to be_valid
-      end
-      it "苗字が全角であれば登録できる" do
-        @user.familyname = "あべ"
-        expect(@user).to be_valid
-      end
-      it "名前が全角であれば登録できる" do
-        @user.firstname = "しんぞう"
-        expect(@user).to be_valid
-      end
-      it "苗字の振り仮名がカタカナであれば登録できる" do
-        @user.familyname_katakana = "アベ"
-        expect(@user).to be_valid
-      end
-      it "名前の振り仮名がカタカナであれば登録できる" do
-        @user.firstname_katakana = "シンゾウ"
-        expect(@user).to be_valid
-      end
     end
     context "新規登録がうまくいかないとき" do
       it "nicknameが空だと登録できない" do
@@ -47,14 +26,32 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Email is invalid"
       end
+      it "登録済みのemailでは登録できない" do
+        @user.email = "a@a"
+        another.user.email = "a@a"
+        @user.valid?
+        expect(@user.errors.full_messages).to include ""
+      end
       it "passwordが空だと登録できない" do
         @user.password = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Password can't be blank"
       end
+      it "password_confirmationが空だと登録できない" do
+        @user.password = "000aaa"
+        @user.password_confirmation = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end
       it "passwordが英字と数字の両方を含めないと登録できない" do
         @user.password = "aaaaaa"
         @user.password_confirmation = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password には英字と数字の両方を含めて設定してください"
+      end
+      it "passwordが数字だけでは登録できない" do
+        @user.password = "111111"
+        @user.password_confirmation = "111111"
         @user.valid?
         expect(@user.errors.full_messages).to include "Password には英字と数字の両方を含めて設定してください"
       end
@@ -64,7 +61,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Familyname 全角文字を使用してください"
       end
       it "苗字が全角出ないと登録できない" do
-        @user.familyname = ""
+        @user.familyname = "abe"
         @user.valid?
         expect(@user.errors.full_messages).to include "Familyname 全角文字を使用してください"
       end
@@ -74,7 +71,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Firstname 全角文字を使用してください"
       end
       it "名前が全角でないと登録できない" do
-        @user.firstname = ""
+        @user.firstname = "abe"
         @user.valid?
         expect(@user.errors.full_messages).to include "Firstname 全角文字を使用してください"
       end
@@ -84,7 +81,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Familyname katakana 全角文字を使用してください"
       end
       it "苗字の振り仮名がカタカナで全角でないと登録できない" do
-        @user.familyname_katakana = ""
+        @user.familyname_katakana = "abe"
         @user.valid?
         expect(@user.errors.full_messages).to include "Familyname katakana 全角文字を使用してください"
       end
@@ -94,7 +91,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Firstname katakana 全角文字を使用してください"
       end
       it "名前の振り仮名がカタカナで全角でないと登録できない" do
-        @user.firstname_katakana = ""
+        @user.firstname_katakana = "abe"
         @user.valid?
         expect(@user.errors.full_messages).to include "Firstname katakana 全角文字を使用してください"
       end
