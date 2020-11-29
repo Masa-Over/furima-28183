@@ -27,10 +27,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Email is invalid"
       end
       it "登録済みのemailでは登録できない" do
-        @user.email = "a@a"
-        another.user.email = "a@a"
-        @user.valid?
-        expect(@user.errors.full_messages).to include ""
+        @user.save
+        another_user = FactoryBot.build(:user,email: @user.email)
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include "Email has already been taken"
       end
       it "passwordが空だと登録できない" do
         @user.password = ""
@@ -78,22 +78,22 @@ RSpec.describe User, type: :model do
       it "苗字の振り仮名が空だと登録できない" do
         @user.familyname_katakana = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include "Familyname katakana 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include "Familyname katakana can't be blank"
       end
       it "苗字の振り仮名がカタカナで全角でないと登録できない" do
         @user.familyname_katakana = "abe"
         @user.valid?
-        expect(@user.errors.full_messages).to include "Familyname katakana 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include "Familyname katakana 全角カタカナを使用してください"
       end
       it "名前の振り仮名が空だと登録できない" do
         @user.firstname_katakana = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include "Firstname katakana 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include "Firstname katakana can't be blank"
       end
       it "名前の振り仮名がカタカナで全角でないと登録できない" do
         @user.firstname_katakana = "abe"
         @user.valid?
-        expect(@user.errors.full_messages).to include "Firstname katakana 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include "Firstname katakana 全角カタカナを使用してください"
       end
       it "誕生日が空だと登録できない" do
         @user.birthday = ""
