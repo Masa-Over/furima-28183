@@ -7,14 +7,22 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    
   end
 
   def new
-    @items = Items.new
+
   end
 
   def show
+    
+  end
+
+  def create
+    
+  end
+
+  def destroy
     
   end
 
