@@ -22,6 +22,7 @@ class Item < ApplicationRecord
     validates :delivery_fee_id
     validates :prefecture_id
     validates :send_day_id
+    validates :image
   end
 
 end

@@ -10,5 +10,10 @@ FactoryBot.define do
     send_day_id     {2}
     association :user
 
+    after(:build) do |item|
+      item.image.attach(io: File.open('app/assets/images/flag.png'), filename: 'flag.png')
+    end
+
+
   end
 end
