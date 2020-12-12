@@ -16,12 +16,11 @@ class Item < ApplicationRecord
     validates :name, length: {maximum: 40}
     validates :explanation, length: {maximum: 1000}
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to:9999999}
-    # validates :genre_id, numericality: { other_than: 1 }
-    validates :category_id
-    validates :status_id
-    validates :delivery_fee_id
-    validates :prefecture_id
-    validates :send_day_id
+    validates :category_id, numericality: { other_than: 1 }
+    validates :status_id, numericality: { other_than: 1 }
+    validates :delivery_fee_id, numericality: { other_than: 1 }
+    validates :prefecture_id, numericality: { other_than: 1 }
+    validates :send_day_id, numericality: { other_than: 1 }
     validates :image
   end
 
