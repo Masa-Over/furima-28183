@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action  :authenticate_user!, only:[:new]
+  before_action :move_to_index, except: [:index, :show ]
 
 
   def edit
@@ -39,6 +40,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :explanation, :price, :user, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :send_day_id, :image).merge(user_id: current_user.id)
   end
 end

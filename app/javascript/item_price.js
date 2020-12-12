@@ -9,5 +9,5 @@ window.addEventListener('load', () => {
     const Profit = inputValue - addTaxDom.innerHTML;
     addTaxPro.innerHTML = Math.floor(Profit);
     console.log(Profit);
-  })
+  });
 });
