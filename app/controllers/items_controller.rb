@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    
+    @item = Item.all
   end
 
   def new
