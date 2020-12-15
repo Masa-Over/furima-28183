@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
-  before_action  :authenticate_user!, only:[:new]
+  before_action  :authenticate_user!, only:[:new,]
 
   def edit
   
   end
 
   def index
-    @items = Item.order("id")
+    @items = Item.all.order("id")
   end
 
   def new
