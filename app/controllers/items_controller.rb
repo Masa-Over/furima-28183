@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action  :authenticate_user!, only:[:new,]
 
-  def edit
+  #def edit
   
-  end
+  #end
 
   def index
     @items = Item.order("created_at DESC")
@@ -26,9 +26,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
+  #def destroy
     
-  end
+  #end
 
   private
   def move_to_index
