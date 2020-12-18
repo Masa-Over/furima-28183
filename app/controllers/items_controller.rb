@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action  :authenticate_user!, only:[:new, :edit]
-  before_action  :set_item, only: [:edit, :show, :update]
+  before_action  :set_item, only: [:edit, :show, :update, :delete]
 
   def edit
     if current_user.id != @item.user_id
@@ -36,9 +36,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  #def destroy
-    
-  #end
+  def destroy
+    @item.destroy
+  end
 
   private
   def move_to_index
