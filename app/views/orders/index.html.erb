@@ -1,4 +1,5 @@
-<%= render "shared/second-header"%>
+<%= form_with(model: @order, url: item_orders_path, local: true) do |form| %>
+<%= render "shared/second-header", model: @user_order%>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -13,7 +14,7 @@
           <%= "商品名" %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= 999,999,999 %></p>
+          <p class='item-price-text'>¥<%#= 999,999,999 %></p>
           <p class='item-price-sub-text'><%= '配送料負担' %></p>
         </div>
       </div>
@@ -128,3 +129,4 @@
   </div>
 </div>
 <%= render "shared/second-footer"%>
+<% end %>

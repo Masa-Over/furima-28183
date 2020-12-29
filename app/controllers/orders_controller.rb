@@ -1,21 +1,25 @@
 class OrdersController < ApplicationController
 
   def index
-    
+    # @orders = Order.all
+  end
+
+  def new
+    @order = Order.new
   end
 
   def create
-    @user_order = UserOrder.new(order_params)
-     if @user_order.valid?
-       @user_order.save
-       redirect_to action: :index
+    @order = Order.new(order_params)
+     if @order.valid?
+       @order.save
+       redirect_to 
      else
-       render action: :new
+       render root_path
      end
   end
 
   private
   def order_params
-    params.reqiure(:user_order).permit(:prefecture_id, :municipalities, :address, :postal_code, :phone_number, :building, :user, :item)
+    params.reqiure(:order).permit(:prefecture_id, :municipalities, :address, :postal_code, :phone_number, :building, :user, :item).merge(user_id: current_user_id, item_id: params[:tweet_id])
   end
 end
