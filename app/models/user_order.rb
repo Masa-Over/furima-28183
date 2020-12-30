@@ -37,8 +37,8 @@ class UserOrder
   end
   
   def save
-    user = User.create(nickname: nickname, birthday: birthday, firstname: firstname, familyname: familyname, firstname_katakana: firstname_katakana, familyname_katakana: familyname_katakana)
-    item = Item.create(name: name, explanation: explanation, price: price,category_id: category_id, status_id:status_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, send_day_id: send_day_id, image: image)
+    @user = User.create(nickname: nickname, birthday: birthday, firstname: firstname, familyname: familyname, firstname_katakana: firstname_katakana, familyname_katakana: familyname_katakana)
+    @item = Item.create(name: name, explanation: explanation, price: price,category_id: category_id, status_id:status_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, send_day_id: send_day_id, image: image)
     StreetAddress.create(prefecture_id: prefecture_id, municipalities: municipalities, address: address, postal_code: postal_code, phone_number: phone_number,building: building, purchase_record: purchase_record)
     PuchaseRecord.create(user_id: user_id, item_id: item_id)
   end
