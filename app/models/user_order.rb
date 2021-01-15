@@ -16,7 +16,7 @@ class UserOrder
   end
   
   def save
-    StreetAddress.create(prefecture_id: prefecture_id, municipalities: municipalities, address: address, postal_code: postal_code, phone_number: phone_number,building: building, purchase_record: purchase_record )
-    PurchaseRecord.create(user_id: user_id, item_id: item_id)
+    purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
+    StreetAddress.create(prefecture_id: prefecture_id, municipalities: municipalities, address: address, postal_code: postal_code, phone_number: phone_number,building: building, purchase_record_id: purchase_record.id )
   end
 end
