@@ -12,6 +12,7 @@ class UserOrder
     validates :phone_number, length: {maximum: 11}
     validates :item_id
     validates :user_id
+    validates :token
     #validates :purchase_record
   end
   

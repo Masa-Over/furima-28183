@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserOrder, type: :model do
-  describe '商品購入' do
+  describe '商品購入(住所)' do
     before do
       @order = FactoryBot.build(:user_order)
     end
@@ -50,6 +50,24 @@ RSpec.describe UserOrder, type: :model do
         @order.phone_number = "090123456789"
         @order.valid?
         expect(@order.errors.full_messages).to include "Phone number is too long (maximum is 11 characters)"
+      end
+    end
+  end
+
+  describe '商品購入(カード)' do
+    before do
+      @order = FactoryBot.build(:user_order)
+    end
+    context "商品購入ができる時" do
+      it 'トークンがあれば保存できること' do
+        expect(@order).to be_valid
+      end
+    end
+    context "商品購入ができない時" do
+      it "tokenが空では登録できないこと" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
