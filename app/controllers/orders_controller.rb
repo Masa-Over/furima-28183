@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only:[:index]
 
   def index
     @user_order = UserOrder.new
-    @item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])  
   end
 
   def create
@@ -33,5 +34,25 @@ class OrdersController < ApplicationController
     )
   end
 
+  def set_item
+    @item = Item.find(params[:item_id])
+    if user_signed_in? && current_user.id != @item.user_id
+      redirect_to :index
+    else
+      redirect_to root_path
+    end
+  end
 
 end
+
+
+
+# ログインしていないユーザー
+# ログインしているが、出品者である
+# ログインしていて、出品者ではない ==> OK
+
+#if user_singned_in? && current_user.id != @item.user_id
+  # 購入画面へ
+#else
+  # トップページへ
+#end
