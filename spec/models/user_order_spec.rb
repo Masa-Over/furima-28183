@@ -9,12 +9,21 @@ RSpec.describe UserOrder, type: :model do
       it '全ての値が正しく入力されていれば購入できること' do
         expect(@order).to be_valid
       end
+      it '建物番号が空でも購入できる' do
+        @order.building = ""
+        expect(@order).to be_valid
+      end
     end
     context "商品購入ができない時" do
       it 'prefecture_idが空の時' do
         @order.prefecture_id = ""
         @order.valid?
         expect(@order.errors.full_messages).to include "Prefecture can't be blank"
+      end
+      it 'prefecture_idが1の時' do
+        @order.prefecture_id = 1
+        @order.valid?
+        expect(@order.errors.full_messages).to include "Prefecture must be other than 1"
       end
       it 'municipalitiesが空の時' do
         @order.municipalities = ""
@@ -50,6 +59,21 @@ RSpec.describe UserOrder, type: :model do
         @order.phone_number = "090123456789"
         @order.valid?
         expect(@order.errors.full_messages).to include "Phone number is too long (maximum is 11 characters)"
+      end
+      it 'phone_numberが数字以外の入力があった時' do
+        @order.phone_number = "a"
+        @order.valid?
+        expect(@order.errors.full_messages).to include "Phone number is not a number"
+      end
+      it 'item_idが空の時' do
+        @order.item_id = ""
+        @order.valid?
+        expect(@order.errors.full_messages).to include "Item can't be blank"
+      end
+      it 'user_idが空の時' do
+        @order.user_id = ""
+        @order.valid?
+        expect(@order.errors.full_messages).to include "User can't be blank"
       end
     end
   end
