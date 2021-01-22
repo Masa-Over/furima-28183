@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action  :set_item, only: [:edit, :show, :update, :destroy]
 
   def edit
-    if current_user.id != @item.user_id && @item.purchase_record == nil
+    if current_user.id != @item.user_id && @item.purchase_record != nil
       redirect_to root_path
     end
   end
