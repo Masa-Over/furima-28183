@@ -14,7 +14,6 @@ class UserOrder
     validates :item_id
     validates :user_id
     validates :token
-    #validates :purchase_record
   end
   
   def save

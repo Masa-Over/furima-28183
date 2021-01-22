@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe UserOrder, type: :model do
   describe '商品購入(住所)' do
     before do
-      @order = FactoryBot.build(:user_order)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @order = FactoryBot.build(:user_order, user_id: @user.id, item_id: @item.id)
+      sleep (0.5)
     end
     context "商品ができる時" do
       it '全ての値が正しく入力されていれば購入できること' do
@@ -75,19 +78,6 @@ RSpec.describe UserOrder, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include "User can't be blank"
       end
-    end
-  end
-
-  describe '商品購入(カード)' do
-    before do
-      @order = FactoryBot.build(:user_order)
-    end
-    context "商品購入ができる時" do
-      it 'トークンがあれば保存できること' do
-        expect(@order).to be_valid
-      end
-    end
-    context "商品購入ができない時" do
       it "tokenが空では登録できないこと" do
         @order.token = nil
         @order.valid?
