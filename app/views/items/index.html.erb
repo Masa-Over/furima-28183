@@ -134,11 +134,11 @@
             <%= link_to item_path(item.id) ,method: :get do %>
             <%= image_tag item.image, class: "item-img" %>
             <% end %>
-            <%# 商品が売れていればsold outを表示しましょう %>
+            <% if item.purchase_record != nil %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
-            <%# //商品が売れていればsold outを表示しましょう %>
+            <% end %>
 
           </div>
           <div class='item-info'>
